@@ -59,4 +59,17 @@ public class CricketAnalyserTest extends ConstantPaths {
             System.out.println(e.getMessage());
         }
     }
+
+    //TC-1.5
+    @Test
+    public void givenWhenCricketData_ShouldReturn_TopBattingAverage() {
+        try
+        {
+            cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
+            String sortedCensusData = cricketAnalyser.getFieldWiseData( "average" );
+            BattingCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData,BattingCSVFile[].class );
+            Assert.assertEquals( "MS Dhoni", censusCSV[0].player );
+        } catch (CricketAnalyserException e) {
+        }
+    }
 }
