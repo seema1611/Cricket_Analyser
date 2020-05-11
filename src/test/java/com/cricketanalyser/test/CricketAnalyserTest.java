@@ -63,13 +63,25 @@ public class CricketAnalyserTest extends ConstantPaths {
     //TC-1.5
     @Test
     public void givenWhenCricketData_ShouldReturn_TopBattingAverage() {
-        try
-        {
+        try {
             cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
-            String sortedCensusData = cricketAnalyser.getFieldWiseData( "average" );
-            BattingCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData,BattingCSVFile[].class );
-            Assert.assertEquals( "MS Dhoni", censusCSV[0].player );
+            String sortedData = cricketAnalyser.getFieldWiseData( "average" );
+            BattingCSVFile[] cricketCSV = new Gson().fromJson( sortedData,BattingCSVFile[].class );
+            Assert.assertEquals( "MS Dhoni", cricketCSV[0].player );
         } catch (CricketAnalyserException e) {
+        }
+    }
+
+    //UC-2
+    //TC-2.1
+    @Test
+    public void givenWhenCricketData_ShouldReturn_TopStrikeRate() {
+        try {
+            cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
+            String sortedData = cricketAnalyser.getFieldWiseData( "strikerate" );
+            BattingCSVFile[] cricketCSV = new Gson().fromJson( sortedData,BattingCSVFile[].class );
+            Assert.assertEquals( "Ishant Sharma", cricketCSV[0].player );
+        } catch (CricketAnalyserException  e) {
         }
     }
 }
