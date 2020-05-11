@@ -23,6 +23,9 @@ public class SortField {
             case "player":
                 comparator = Comparator.comparing( Cricket -> Cricket.player );
                 break;
+            case "sixandfour":
+                comparator = Comparator.comparing( cricket -> cricket.sumSixFour );
+                break;
         }
         return comparator;
     }

@@ -62,7 +62,7 @@ public class CricketAnalyserTest extends ConstantPaths {
 
     //TC-1.5
     @Test
-    public void givenWhenCricketData_ShouldReturn_TopBattingAverage() {
+    public void givenCricketData_whenAverage_ShouldReturnTopAverage() {
         try {
             cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
             String sortedData = cricketAnalyser.getFieldWiseData( "average" );
@@ -75,12 +75,25 @@ public class CricketAnalyserTest extends ConstantPaths {
     //UC-2
     //TC-2.1
     @Test
-    public void givenWhenCricketData_ShouldReturn_TopStrikeRate() {
+    public void givenCricketData_whenStrikingRate_ShouldReturnTopStrikingRate() {
         try {
             cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
             String sortedData = cricketAnalyser.getFieldWiseData( "strikerate" );
             BattingCSVFile[] cricketCSV = new Gson().fromJson( sortedData,BattingCSVFile[].class );
             Assert.assertEquals( "Ishant Sharma", cricketCSV[0].player );
+        } catch (CricketAnalyserException  e) {
+        }
+    }
+
+    //UC-3
+    //TC-3.1
+    @Test
+    public void givenCricketData_whenSixsAndFours_ShouldReturnTopStrikingRate() {
+        try {
+            cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
+            String sortedData = cricketAnalyser.getFieldWiseData( "sixandfour" );
+            BattingCSVFile[] cricketCSV = new Gson().fromJson( sortedData,BattingCSVFile[].class );
+            Assert.assertEquals( "Andre Russell", cricketCSV[0].player );
         } catch (CricketAnalyserException  e) {
         }
     }
