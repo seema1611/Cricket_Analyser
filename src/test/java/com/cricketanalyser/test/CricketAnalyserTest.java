@@ -48,4 +48,15 @@ public class CricketAnalyserTest extends ConstantPaths {
             Assert.assertEquals( CricketAnalyserException.ExceptionType.CRICKET_FILE_PROBLEM, e.type );
         }
     }
+
+    //TC-1.4
+    @Test
+    public void givenWhenCricketData_whenInCorrect_shouldThrowException() {
+        try {
+            cricketAnalyser.loadCricketData( WRONG_IPL_RUNS_FILE );
+        } catch (CricketAnalyserException e) {
+            Assert.assertEquals( CricketAnalyserException.ExceptionType.CRICKET_FILE_INTERNAL_ISSUE, e.type );
+            System.out.println(e.getMessage());
+        }
+    }
 }
