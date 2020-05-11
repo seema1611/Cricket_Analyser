@@ -28,4 +28,14 @@ public class CricketAnalyserTest extends ConstantPaths {
             System.out.println("No Record matches");
         }
     }
+
+    //TC-1.2
+    @Test
+    public void givenWhenCricketDataPath_whenInCorrect_shouldThrowException() {
+        try {
+            cricketAnalyser.loadCricketData( WRONG_IPL_RUNS_FILE_PATH );
+        } catch (CricketAnalyserException e) {
+            Assert.assertEquals( CricketAnalyserException.ExceptionType.CRICKET_FILE_PROBLEM, e.type );
+        }
+    }
 }
