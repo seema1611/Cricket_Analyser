@@ -38,4 +38,14 @@ public class CricketAnalyserTest extends ConstantPaths {
             Assert.assertEquals( CricketAnalyserException.ExceptionType.CRICKET_FILE_PROBLEM, e.type );
         }
     }
+
+    //TC-1.3
+    @Test
+    public void givenWhenCricketDataType_whenInCorrect_shouldThrowException() {
+        try {
+            cricketAnalyser.loadCricketData( WRONG_IPL_RUNS_FILE_TYPE );
+        } catch (CricketAnalyserException e) {
+            Assert.assertEquals( CricketAnalyserException.ExceptionType.CRICKET_FILE_PROBLEM, e.type );
+        }
+    }
 }
