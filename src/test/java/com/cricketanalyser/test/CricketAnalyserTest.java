@@ -123,4 +123,17 @@ public class CricketAnalyserTest extends ConstantPaths {
         } catch (CricketAnalyserException  e) {
         }
     }
+
+    //UC-6
+    //TC-6.1
+    @Test
+    public void givenCricketData_whenMaxRunsWithAverage_ShouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
+            String sortedData = cricketAnalyser.getFieldWiseData( "runsandavg" );
+            BattingCSVFile[] censusCSV = new Gson().fromJson( sortedData, BattingCSVFile[].class );
+            Assert.assertEquals( "David Warner ", censusCSV[0].player );
+        } catch (CricketAnalyserException e) {
+        }
+    }
 }
