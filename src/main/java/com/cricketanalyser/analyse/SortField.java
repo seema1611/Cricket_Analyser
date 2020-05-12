@@ -10,22 +10,40 @@ public class SortField {
 
         Comparator<CricketDAO> comparator = null;
         switch (field) {
+            case "player":
+                comparator = Comparator.comparing( Cricket -> Cricket.player );
+                break;
+
             case "strikerate":
                 comparator = Comparator.comparing( cricket -> cricket.strikeRate );
                 break;
-            case "sixes":
-                comparator = Comparator.comparing( cricket -> cricket.sixes );
-                break;
+
             case "average":
                 comparator = Comparator.comparing( (cricket) -> Double.parseDouble( cricket.average
                         .replace( "-", "0" ) ) );
                 break;
-            case "player":
-                comparator = Comparator.comparing( Cricket -> Cricket.player );
+
+            case "sixes":
+                comparator = Comparator.comparing( cricket -> cricket.sixes );
                 break;
+
             case "sixandfour":
                 comparator = Comparator.comparing( cricket -> cricket.sumSixFour );
                 break;
+
+            case "sixfourandstrike":
+                comparator = Comparator.comparing( CricketDAO::getSumSixFour )
+                        .thenComparing( CricketDAO::getStrikeRate );
+                break;
+
+            case "avgandstrike":
+                comparator = Comparator.comparing( CricketDAO::getStrikeRate )
+                        .thenComparing( CricketDAO::getAverage );
+                break;
+
+            case "runsandavg":
+                comparator = Comparator.comparing( CricketDAO::getRuns )
+                        .thenComparing( CricketDAO::getAverage );
         }
         return comparator;
     }

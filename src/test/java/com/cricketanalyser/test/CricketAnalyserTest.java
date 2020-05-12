@@ -88,10 +88,23 @@ public class CricketAnalyserTest extends ConstantPaths {
     //UC-3
     //TC-3.1
     @Test
-    public void givenCricketData_whenSixsAndFours_ShouldReturnTopStrikingRate() {
+    public void givenCricketData_whenSixsAndFours_ShouldReturnCorrectRecord() {
         try {
             cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
             String sortedData = cricketAnalyser.getFieldWiseData( "sixandfour" );
+            BattingCSVFile[] cricketCSV = new Gson().fromJson( sortedData,BattingCSVFile[].class );
+            Assert.assertEquals( "Andre Russell", cricketCSV[0].player );
+        } catch (CricketAnalyserException  e) {
+        }
+    }
+
+    //UC-4
+    //TC-4.1
+    @Test
+    public void givenCricketData_whenTopSixesFoursAndStrikingRate_ShouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
+            String sortedData = cricketAnalyser.getFieldWiseData( "sixfourandstrike" );
             BattingCSVFile[] cricketCSV = new Gson().fromJson( sortedData,BattingCSVFile[].class );
             Assert.assertEquals( "Andre Russell", cricketCSV[0].player );
         } catch (CricketAnalyserException  e) {
