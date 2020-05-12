@@ -110,4 +110,17 @@ public class CricketAnalyserTest extends ConstantPaths {
         } catch (CricketAnalyserException  e) {
         }
     }
+
+    //UC-5
+    //TC-5.1
+    @Test
+    public void givenCricketData_whenTopAverageWithStrikeRate_ShouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadCricketData( IPL_RUNS_FILE_PATH );
+            String sortedData = cricketAnalyser.getFieldWiseData( "avgandstrike" );
+            BattingCSVFile[] cricketCSV = new Gson().fromJson( sortedData,BattingCSVFile[].class );
+            Assert.assertEquals( "Ishant Sharma", cricketCSV[0].player );
+        } catch (CricketAnalyserException  e) {
+        }
+    }
 }
