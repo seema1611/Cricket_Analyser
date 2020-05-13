@@ -1,51 +1,80 @@
 package com.cricketanalyser.dao;
 
 import com.cricketanalyser.model.BattingCSVFile;
+import com.cricketanalyser.model.BowlingCSVFile;
 
 public class CricketDAO {
     public String player;
     public int runs;
-    public String average;
+    public double average;
     public double strikeRate;
     public int fours;
     public int sixes;
     public int sumSixFour;
+    public double economy;
+    public int five;
+    public  int sumWickets;
+    public double batsmenAvg;
+    public double bowlerAvg;
+    public  double bothAvg;
 
-    public CricketDAO(BattingCSVFile playerObj) {
-        this.average = playerObj.average;
-        this.fours = playerObj.fours;
-        this.player = playerObj.player;
-        this.runs = playerObj.runs;
-        this.sixes = playerObj.sixes;
-        this.strikeRate = playerObj.strikeRate;
-        this.sumSixFour = playerObj.fours + playerObj.sixes;
+    public CricketDAO(BattingCSVFile battingCSVFile) {
+        average = battingCSVFile.average;
+        fours = battingCSVFile.fours;
+        player = battingCSVFile.player;
+        runs = battingCSVFile.runs;
+        sixes = battingCSVFile.sixes;
+        strikeRate = battingCSVFile.strikeRate;
+        sumSixFour = battingCSVFile.fours + battingCSVFile.sixes;
     }
 
-    public String getPlayer() {
-        return player;
+    public CricketDAO(BowlingCSVFile bowlingCSVFile) {
+        average = bowlingCSVFile.average;
+        player = bowlingCSVFile.player;
+        strikeRate = bowlingCSVFile.strikeRate;
+        economy = bowlingCSVFile.economy;
+        fours = bowlingCSVFile.fourWicket;
+        five = bowlingCSVFile.fiveWicket;
+        sumWickets= bowlingCSVFile.fourWicket + bowlingCSVFile.fiveWicket;
     }
 
-    public int getRuns() {
-        return runs;
-    }
-
-    public String getAverage() {
-        return average;
+    public CricketDAO(CricketDAO batsMen, CricketDAO bowler) {
+        this.player=batsMen.player;
+        this.batsmenAvg=batsMen.average;
+        this.bowlerAvg=bowler.average;
+        this.sumWickets=bowler.sumWickets;
+        this.runs=batsMen.runs;
     }
 
     public double getStrikeRate() {
         return strikeRate;
     }
 
-    public int getFours() {
-        return fours;
-    }
-
-    public int getSixes() {
-        return sixes;
-    }
-
     public int getSumSixFour() {
         return sumSixFour;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
+    public int getRuns() {
+        return runs;
+    }
+
+    public int getSumWickets() {
+        return sumWickets;
+    }
+
+    public double getBatsmenAvg() {
+        return batsmenAvg;
+    }
+
+    public double getBowlerAvg() {
+        return bowlerAvg;
+    }
+
+    public double getBothAvg() {
+        return bothAvg;
     }
 }
