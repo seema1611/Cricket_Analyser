@@ -215,4 +215,17 @@ public class CricketAnalyserTest extends ConstantPaths {
         } catch (CricketAnalyserException  e) {
         }
     }
+
+    //TC-13.1
+    @Test
+    public void givenIPLData_whenSortedTopBattingAndBowlingAverage_shouldReturnCorrectRecord() {
+        try {
+            String sortedData = cricketAnalyser.mergeBatsMenBowlerData( ConstantPaths.IPL_RUNS_FILE_PATH,
+                    ConstantPaths.IPL_BALLS_FILE_PATH, "BATSMEN_BOWLER_AVERAGE");
+            BowlingCSVFile[] cricketCSV = new Gson().fromJson( sortedData, BowlingCSVFile[].class );
+            Assert.assertEquals(  "Andre Russell", cricketCSV[0].player );
+        } catch (CricketAnalyserException  e) {
+            e.printStackTrace();
+        }
+    }
 }
