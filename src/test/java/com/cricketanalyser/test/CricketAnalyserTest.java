@@ -176,4 +176,17 @@ public class CricketAnalyserTest extends ConstantPaths {
         } catch (CricketAnalyserException  e) {
         }
     }
+
+    //UC-10
+    //TC-10.1
+    @Test
+    public void givenCricketBowlingData_whenTopSixesFoursAndStrikingRate_shouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadCricketData("BOWLER",IPL_BALLS_FILE_PATH);
+            String sortedData = cricketAnalyser.getFieldWiseData("STRIKE_AND_WICKETS");
+            BowlingCSVFile[] cricketCSV = new Gson().fromJson( sortedData, BowlingCSVFile[].class );
+            Assert.assertEquals( "Kagiso Rabada", cricketCSV[82].player );
+        } catch (CricketAnalyserException  e) {
+        }
+    }
 }
