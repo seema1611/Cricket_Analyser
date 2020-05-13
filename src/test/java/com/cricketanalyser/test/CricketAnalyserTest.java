@@ -202,4 +202,17 @@ public class CricketAnalyserTest extends ConstantPaths {
         } catch (CricketAnalyserException  e) {
         }
     }
+
+    //UC-12
+    //TC-12.1
+    @Test
+    public void givenCricketBowlingData_whenTopAverageWithWickets_shouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadCricketData("BOWLER",IPL_BALLS_FILE_PATH);
+            String sortedData = cricketAnalyser.getFieldWiseData( "WICKET_AVERAGE" );
+            BowlingCSVFile[] cricketCSV = new Gson().fromJson( sortedData, BowlingCSVFile[].class );
+            Assert.assertEquals( "Lasith Malinga", cricketCSV[0].player );
+        } catch (CricketAnalyserException  e) {
+        }
+    }
 }
