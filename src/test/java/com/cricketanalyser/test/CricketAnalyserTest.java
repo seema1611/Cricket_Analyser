@@ -228,4 +228,18 @@ public class CricketAnalyserTest extends ConstantPaths {
             e.printStackTrace();
         }
     }
+
+    //UC-14
+    //TC-14.1
+    @Test
+    public void givenIPLData_whenSortedTopBattingAndBowlingAverageAndRuns_shouldReturnCorrectRecord() {
+        try {
+            String sortedData = cricketAnalyser.mergeBatsMenBowlerData( ConstantPaths.IPL_RUNS_FILE_PATH,
+                    ConstantPaths.IPL_BALLS_FILE_PATH, "ALL_ROUNDER");
+            BowlingCSVFile[] cricketCSV = new Gson().fromJson( sortedData, BowlingCSVFile[].class );
+            Assert.assertEquals(  "Mohammad Nabi", cricketCSV[0].player );
+        } catch (CricketAnalyserException  e) {
+            e.printStackTrace();
+        }
+    }
 }
