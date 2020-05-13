@@ -163,4 +163,17 @@ public class CricketAnalyserTest extends ConstantPaths {
         } catch (CricketAnalyserException  e) {
         }
     }
+
+    //UC-9
+    //TC-9.1
+    @Test
+    public void givenCricketBowlingData_whenEconomy_shouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadCricketData( "BOWLER", IPL_BALLS_FILE_PATH );
+            String sortedData = cricketAnalyser.getFieldWiseData( "ECONOMY" );
+            BowlingCSVFile[] cricketCSV = new Gson().fromJson( sortedData, BowlingCSVFile[].class );
+            Assert.assertEquals( "Shivam Dube", cricketCSV[cricketCSV.length-1].player );
+        } catch (CricketAnalyserException  e) {
+        }
+    }
 }
