@@ -150,4 +150,17 @@ public class CricketAnalyserTest extends ConstantPaths {
         } catch (CricketAnalyserException e) {
         }
     }
+
+    //UC-8
+    //TC-8.1
+    @Test
+    public void givenCricketBowlingData_whenStrikingRate_shouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadCricketData( "BOWLER", IPL_BALLS_FILE_PATH );
+            String sortedData = cricketAnalyser.getFieldWiseData( "STRIKE_RATE" );
+            BowlingCSVFile[] cricketCSV = new Gson().fromJson( sortedData, BowlingCSVFile[].class );
+            Assert.assertEquals( "Alzarri Joseph", cricketCSV[85].player );
+        } catch (CricketAnalyserException  e) {
+        }
+    }
 }
