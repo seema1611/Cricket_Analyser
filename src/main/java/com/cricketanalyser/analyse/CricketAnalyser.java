@@ -1,17 +1,9 @@
 package com.cricketanalyser.analyse;
 
-import com.censusanalyser.opencsv.CSVBuilderFactory;
-import com.censusanalyser.opencsv.ICSVBuilder;
 import com.cricketanalyser.adapter.CricketAnalyserFactory;
 import com.cricketanalyser.dao.CricketDAO;
 import com.cricketanalyser.exception.CricketAnalyserException;
-import com.cricketanalyser.model.BattingCSVFile;
 import com.google.gson.Gson;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -46,7 +38,8 @@ public class CricketAnalyser {
             if (dao != null) {
                 cricketList.add( dao );
             }
-        } );
+        }
+        );
         return sortDataJSONFormat( field );
     }
 

@@ -22,56 +22,6 @@ public class CricketAnalyserFactory {
         }
     }
 
-    public static List<CricketDAO> getFilteredData(List<CricketDAO> cricketList, String fieldType) {
-        switch (fieldType) {
-            case "average":
-                cricketList = cricketList.stream()
-                        .filter( cricket -> cricket.getAverage() > 0 )
-                        .collect( Collectors.toList() );
-                break;
-
-            case "strike_rate":
-                cricketList = cricketList.stream()
-                        .filter( cricket -> cricket.getStrikeRate() > 0 )
-                        .collect( Collectors.toList() );
-                break;
-
-            case "strike_and_six_four":
-                cricketList = cricketList.stream()
-                        .filter( cricket -> cricket.getRuns() > 100 )
-                        .collect( Collectors.toList() );
-                break;
-
-            case "avg_and_strike_rate":
-                cricketList = cricketList.stream()
-                        .filter( cricket -> cricket.getStrikeRate()
-                                > 0 && cricket.getAverage() > 0)
-                        .collect( Collectors.toList() );
-                break;
-
-            case "strike_and_wickets":
-                cricketList = cricketList.stream()
-                        .filter( cricket -> cricket.getSumWickets()
-                                > 0 && cricket.getEconomy() < 10 )
-                        .collect( Collectors.toList() );
-                break;
-
-            case "wicket_average":
-                cricketList = cricketList.stream()
-                        .filter( cricket -> cricket.getMatches() > 15 )
-                        .collect( Collectors.toList() );
-                break;
-
-            case "bowler_avg_and_strike_rate":
-                cricketList = cricketList.stream()
-                        .filter( cricket -> cricket.getAverage()
-                                > 0 && cricket.getMatches() > 10 )
-                        .collect( Collectors.toList() );
-                break;
-        }
-        return cricketList;
-    }
-
     public Comparator<CricketDAO> getCurrentSort(String field) {
         Comparator<CricketDAO> comparator = null;
         switch (field) {
@@ -126,6 +76,56 @@ public class CricketAnalyserFactory {
                 break;
         }
         return comparator;
+    }
+
+    public static List<CricketDAO> getFilteredData(List<CricketDAO> cricketList, String fieldType) {
+        switch (fieldType) {
+            case "average":
+                cricketList = cricketList.stream()
+                        .filter( cricket -> cricket.getAverage() > 0 )
+                        .collect( Collectors.toList() );
+                break;
+
+            case "strike_rate":
+                cricketList = cricketList.stream()
+                        .filter( cricket -> cricket.getStrikeRate() > 0 )
+                        .collect( Collectors.toList() );
+                break;
+
+            case "strike_and_six_four":
+                cricketList = cricketList.stream()
+                        .filter( cricket -> cricket.getRuns() > 100 )
+                        .collect( Collectors.toList() );
+                break;
+
+            case "avg_and_strike_rate":
+                cricketList = cricketList.stream()
+                        .filter( cricket -> cricket.getStrikeRate()
+                                > 0 && cricket.getAverage() > 0)
+                        .collect( Collectors.toList() );
+                break;
+
+            case "strike_and_wickets":
+                cricketList = cricketList.stream()
+                        .filter( cricket -> cricket.getSumWickets()
+                                > 0 && cricket.getEconomy() < 10 )
+                        .collect( Collectors.toList() );
+                break;
+
+            case "wicket_average":
+                cricketList = cricketList.stream()
+                        .filter( cricket -> cricket.getMatches() > 15 )
+                        .collect( Collectors.toList() );
+                break;
+
+            case "bowler_avg_and_strike_rate":
+                cricketList = cricketList.stream()
+                        .filter( cricket -> cricket.getAverage()
+                                > 0 && cricket.getMatches() > 10 )
+                        .collect( Collectors.toList() );
+                break;
+        }
+        return cricketList;
     }
 
     public <E> void getCricketObject(Class<E> cricketClass, Map cricketMap, Object cricketCSV) {

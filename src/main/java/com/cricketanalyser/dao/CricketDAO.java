@@ -75,10 +75,6 @@ public class CricketDAO {
         return bowlerAvg;
     }
 
-    public double getBothAvg() {
-        return bothAvg;
-    }
-
     public double getEconomy() {
         return economy;
     }
