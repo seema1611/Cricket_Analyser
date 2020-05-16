@@ -52,6 +52,7 @@ public class CricketAnalyser {
 
     private String sortDataJSONFormat(String fieldType) {
         Comparator<CricketDAO> cricketComparator = new CricketAnalyserFactory().getCurrentSort( fieldType );
+        cricketList = CricketAnalyserFactory.getFilteredData( cricketList, fieldType );
         List<CricketDAO> sortedList = cricketList.stream()
                 .sorted( cricketComparator.reversed() )
                 .collect( Collectors.toList() );

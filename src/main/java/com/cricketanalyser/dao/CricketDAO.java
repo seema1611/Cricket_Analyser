@@ -17,6 +17,7 @@ public class CricketDAO {
     public double batsmenAvg;
     public double bowlerAvg;
     public  double bothAvg;
+    public int matches;
 
     public CricketDAO(BattingCSVFile battingCSVFile) {
         average = battingCSVFile.average;
@@ -76,5 +77,12 @@ public class CricketDAO {
 
     public double getBothAvg() {
         return bothAvg;
+    }
+
+    public double getEconomy() {
+        return economy;
+    }
+    public int getMatches() {
+        return matches;
     }
 }
